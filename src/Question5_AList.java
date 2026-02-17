@@ -29,7 +29,7 @@ A call to songsList.toString(list) returns:
 Note: The example above must produce the same output after replacing the type of the songsList from
 Alist to SLList or DLList.
  */
-public class Question5_AList {
+public class Question5_AList<T> {
     int maxSize, size;
     Object[] data;
 
@@ -62,9 +62,9 @@ public class Question5_AList {
         this.data = data;
     }
 
-    public void addy(Object p){
-        if(size == maxSize){
-            resize(maxSize * 2);
+    public void addy(T p){
+        if(size == data.length){
+            resize(data.length * 2);
         }
         data[size] = p;
         size++;
@@ -73,11 +73,6 @@ public class Question5_AList {
     public void removey(int pos){
         if(pos < 0 || pos >= size){
             System.out.println("The position you provided is out of bounds");
-            return;
-        }
-        if(pos == size){
-            size --;
-            data[size] = null;
             return;
         }
         for(int i = pos; i < size - 1; i++){
@@ -89,10 +84,8 @@ public class Question5_AList {
 
     public void resize(int newSize){
         Object[] tmp = new Object[newSize];
-        maxSize = 0;
         for(int i = 0; i < size; i++){
             tmp[i] = data[i];
-            maxSize++;
         }
         data = tmp;
     }
