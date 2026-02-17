@@ -11,8 +11,6 @@ items if necessary and updating the size.
 • String toString(): This method should return a string containing all the elements in the AList. Each
 element should be in a new line when the resulting String is printed.
  */
-import java.util.List;
-import java.util.ArrayList;
 public class Question2_AList {
     int maxSize, size;
     Question1_Song[] AList;
@@ -47,8 +45,8 @@ public class Question2_AList {
     }
 
     public void addy(Question1_Song p){
-        if(size == maxSize){
-            resize(maxSize * 2);
+        if(size == AList.length){
+            resize(AList.length * 2);
         }
         AList[size] = p;
         size++;
@@ -59,22 +57,16 @@ public class Question2_AList {
             System.out.println("The position you provided is out of bounds");
             return;
         }
-        if(pos == size){
-            size --;
-        }else if(pos < size){
-            for(int i = pos; i < size-1; i++){
-                AList[i] = AList[i+1];
-            }
-            size--;
+        for(int i = pos; i < size-1; i++){
+            AList[i] = AList[i+1];
         }
+        size--;
     }
 
     public void resize(int newSize){
         Question1_Song[] tmp = new Question1_Song[newSize];
-        maxSize = 0;
         for(int i = 0; i < size; i++){
             tmp[i] = AList[i];
-            maxSize++;
         }
         AList = tmp;
     }
@@ -83,7 +75,7 @@ public class Question2_AList {
     public String toString() {
         String output = "";
         for(int i = 0; i < size; i++){
-            output += AList[i].toString() + "\n";
+            output += AList[i].toString() + "\n\n";
         }
         return output;
     }
