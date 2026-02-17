@@ -60,7 +60,7 @@ public class Question3_SLList {
         Question3_SLNode current = head;
 
         while(current != null){
-            output += current.song + "\n";
+            output += current.song + "\n\n";
             current = current.nextSong;
         }
         return output;
