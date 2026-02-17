@@ -49,19 +49,18 @@ public class Question4_DLList {
 
         Question4_DLNode current = head;
         for(int i = 0; i < pos - 1; i++){
-            if(current == null){
+            if(current.nextSong == null){
                 return;
             }
             current = current.nextSong;
         }
-        if (current == null){
+        Question4_DLNode target = current.nextSong;
+        if(target == null){
             return;
         }
-        if (current.previousSong != null){
-            current.previousSong.nextSong = current.nextSong;
-        }
-        if (current.nextSong != null){
-            current.nextSong.previousSong = current.previousSong;
+        current.nextSong = target.nextSong;
+        if(target.nextSong != null){
+            target.nextSong.previousSong = current;
         }
     }
 
@@ -71,7 +70,7 @@ public class Question4_DLList {
         Question4_DLNode current = head;
 
         while(current != null){
-            output += current.song + "\n";
+            output += current.song + "\n\n";
             current = current.nextSong;
         }
         return output;
