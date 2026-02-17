@@ -29,5 +29,5 @@ A call to songsList.toString(list) returns:
 Note: The example above must produce the same output after replacing the type of the songsList from
 Alist to SLList or DLList.
  */
-public class Question5 {
+public class Question5_DLList {
 }

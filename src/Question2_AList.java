@@ -63,7 +63,7 @@ public class Question2_AList {
             size --;
         }else if(pos < size){
             for(int i = pos; i < size-1; i++){
-                AList[1] = AList[i+1];
+                AList[i] = AList[i+1];
             }
             size--;
         }

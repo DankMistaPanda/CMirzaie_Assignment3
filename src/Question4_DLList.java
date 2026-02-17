@@ -12,4 +12,68 @@ updating the pointers appropriately.
 element should be in a new line when the resulting String is printed.
  */
 public class Question4_DLList {
+    Question4_DLNode head;
+
+    //Empty Constructor
+    Question4_DLList(){
+        head = null;
+    }
+
+    public void addy(Question1_Song s){
+        Question4_DLNode newNode = new Question4_DLNode(s);
+
+        if(head == null){
+            head = newNode;
+            return;
+        }
+        Question4_DLNode current = head;
+        while(current.nextSong != null){
+            current = current.nextSong;
+        }
+        current.nextSong = newNode;
+        newNode.previousSong = current;
+    }
+
+    public void removey(int pos){
+        if(pos < 0 || head == null){
+            System.out.println("The position you provided is out of bounds");
+            return;
+        }
+        if(pos == 0){
+            head = head.nextSong;
+            if(head != null){
+                head.previousSong = null;
+            }
+            return;
+        }
+
+        Question4_DLNode current = head;
+        for(int i = 0; i < pos - 1; i++){
+            if(current == null){
+                return;
+            }
+            current = current.nextSong;
+        }
+        if (current == null){
+            return;
+        }
+        if (current.previousSong != null){
+            current.previousSong.nextSong = current.nextSong;
+        }
+        if (current.nextSong != null){
+            current.nextSong.previousSong = current.previousSong;
+        }
+    }
+
+    @Override
+    public String toString() {
+        String output = "";
+        Question4_DLNode current = head;
+
+        while(current != null){
+            output += current.song + "\n";
+            current = current.nextSong;
+        }
+        return output;
+    }
 }
