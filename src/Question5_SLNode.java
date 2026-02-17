@@ -29,5 +29,12 @@ A call to songsList.toString(list) returns:
 Note: The example above must produce the same output after replacing the type of the songsList from
 Alist to SLList or DLList.
  */
-public class Question5_SLNode {
+public class Question5_SLNode<T> {
+    T data;
+    Question5_SLNode<T> next;
+
+    public Question5_SLNode(T data){
+        this.data = data;
+        this.next = null;
+    }
 }
