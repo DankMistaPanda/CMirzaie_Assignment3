@@ -29,5 +29,69 @@ A call to songsList.toString(list) returns:
 Note: The example above must produce the same output after replacing the type of the songsList from
 Alist to SLList or DLList.
  */
-public class Question5_DLList {
+public class Question5_DLList<T> {
+    Question5_DLNode<T> head;
+
+    //Empty Constructor
+    Question5_DLList(){
+        head = null;
+    }
+
+    public void addy(T s){
+        Question5_DLNode<T> newNode = new Question5_DLNode<>(s);
+
+        if(head == null){
+            head = newNode;
+            return;
+        }
+        Question5_DLNode<T> current = head;
+        while(current.next != null){
+            current = current.next;
+        }
+        current.next = newNode;
+        newNode.prev = current;
+    }
+
+    public void removey(int pos){
+        if(pos < 0 || head == null){
+            System.out.println("The position you provided is out of bounds");
+            return;
+        }
+        if(pos == 0){
+            head = head.next;
+            if(head != null){
+                head.prev = null;
+            }
+            return;
+        }
+
+        Question5_DLNode<T> current = head;
+        for(int i = 0; i < pos - 1; i++){
+            if(current.next == null){
+                return;
+            }
+            current = current.next;
+        }
+
+        Question5_DLNode<T> target = current.next;
+        if(target == null){
+            return;
+        }
+        current.next = target.next;
+        if(target.next != null){
+            target.next.prev = current;
+        }
+    }
+
+    @Override
+    public String toString() {
+        String output = "";
+        Question5_DLNode<T> current = head;
+
+        while(current != null){
+            output += current.data.toString() + "\n";
+            current = current.next;
+        }
+        return output;
+    }
 }
