@@ -29,5 +29,59 @@ A call to songsList.toString(list) returns:
 Note: The example above must produce the same output after replacing the type of the songsList from
 Alist to SLList or DLList.
  */
-public class Question5_SLList {
+public class Question5_SLList<T> {
+    Question5_SLNode head;
+
+    //Empty Constructor
+    Question5_SLList(){
+        head = null;
+    }
+
+    public void addy(T s){
+        Question5_SLNode<T> newNode = new Question5_SLNode<>(s);
+
+        if(head == null){
+            head = newNode;
+            return;
+        }
+        Question5_SLNode<T> current = head;
+        while(current.next != null){
+            current = current.next;
+        }
+        current.next = newNode;
+    }
+
+    public void removey(int pos){
+        if(pos < 0 || head == null){
+            System.out.println("The position you provided is out of bounds");
+            return;
+        }
+        if(pos == 0){
+            head = head.next;
+            return;
+        }
+
+        Question5_SLNode<T> current = head;
+        for(int i = 0; i < pos - 1; i++){
+            if(current.next == null){
+                return;
+            }
+            current = current.next;
+        }
+        if (current.next != null){
+            current.next = current.next.next;
+        }
+    }
+
+    @Override
+    public String toString() {
+        String output = "";
+        Question5_SLNode<T> current = head;
+
+        while(current != null){
+            output += current.data.toString() + "\n";
+            current = current.next;
+        }
+        return output;
+    }
 }
